@@ -6,7 +6,7 @@ pipeline {
         string(defaultValue: "ubuntu", description: 'key name?', name: 'KeyName')
         string(defaultValue: "t2.micro", description: 'Instance name?', name: 'InstanceType')
         choice(choices: 'US-EAST-1\nUS-WEST-2', description: 'What AWS region?', name: 'region')
-        choice(choices: 'True\nFalse', description: 'Want to delete?', name: 'delete')
+        choice(choices: 'True\nFalse', description: 'Want to Describe?', name: 'Describe')
     }
 
     stages {
@@ -23,7 +23,7 @@ pipeline {
             steps {
                //sh "aws cloudformation describe-stack-events --stack-name ${params.StackName}"
                script {
-                      if ("${params.delete}" == 'True') {
+                      if ("${params.Describe}" == 'True') {
                            sh "aws cloudformation describe-stack-events --stack-name ${params.StackName}"
                       } else {
                            echo 'Will not delete'

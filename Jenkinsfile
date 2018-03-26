@@ -9,7 +9,7 @@ pipeline {
                  MAVEN_HOME = tool 'M3'
             }
             steps { 
-                sh '${MAVEN_HOME}/bin/mvn -U clean test cobertura:cobertura -Dmaven.test.skip=true -Dcobertura.report.format=xml' 
+                sh 'aws cloudformation create-stack --template-body file://templates/single_instance.yml --stack-name single-instance --parameters ParameterKey=KeyName,ParameterValue=tutorial ParameterKey=InstanceType,ParameterValue=t2.micro' 
             }
         }
         stage('NexusArtifactUploaderJob') {

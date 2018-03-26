@@ -3,11 +3,6 @@ pipeline {
 
     stages {
         stage('Build') { 
-            environment {
-                 JAVA_HOME = tool 'jdk-8u45'
-                 PATH="${JAVA_HOME}/bin:${PATH}"
-                 MAVEN_HOME = tool 'M3'
-            }
             steps { 
                 sh 'aws cloudformation create-stack --template-body file://templates/single_instance.yml --stack-name single-instance --parameters ParameterKey=KeyName,ParameterValue=tutorial ParameterKey=InstanceType,ParameterValue=t2.micro' 
             }

@@ -24,7 +24,7 @@ pipeline {
                //sh "aws cloudformation describe-stack-events --stack-name ${params.StackName}"
                script {
                       if ("${params.delete}" == 'True') {
-                           aws cloudformation describe-stack-events --stack-name ${params.StackName}
+                           sh "aws cloudformation describe-stack-events --stack-name ${params.StackName}"
                       } else {
                            echo 'Will not delete'
                       }

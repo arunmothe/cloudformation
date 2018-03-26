@@ -56,14 +56,9 @@ Resources:
       KeyName:
         Ref: KeyName
       SecurityGroupIds:
-      - Ref: SecurityGroup  
-      NetworkInterfaces:
-      - AssociatePublicIpAddress: 'true'
-        DeviceIndex: '0'
-        DeleteOnTermination: 'true'
-        SubnetId:
-          Ref: Subnet
-
+      - Ref: SecurityGroup
+      SubnetId:
+        Ref: Subnet        
         
   KubernetesWorker:
     Type: AWS::EC2::Instance
@@ -76,13 +71,8 @@ Resources:
         Ref: KeyName
       SecurityGroupIds:
       - Ref: SecurityGroup
-      NetworkInterfaces:
-      - AssociatePublicIpAddress: 'true'
-        DeviceIndex: '0'
-        DeleteOnTermination: 'true'
-        SubnetId:
-          Ref: Subnet 
-  
+      SubnetId:
+        Ref: Subnet     
 Outputs:
   PublicName:
     Value:

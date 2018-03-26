@@ -12,12 +12,12 @@ pipeline {
     stages {
         stage('Validate') { 
             steps { 
-                sh "aws cloudformation validate-template --template-body file://templates/single_instance.yml"
+                sh "aws cloudformation validate-template --template-body file://templates/single_new.yml"
             }
         }
         stage('Build') { 
             steps { 
-                sh "aws cloudformation create-stack --template-body file://templates/single_instance.yml --stack-name ${params.StackName} --parameters ParameterKey=KeyName,ParameterValue=${params.KeyName} ParameterKey=InstanceType,ParameterValue=${params.InstanceType}"            }
+                sh "aws cloudformation create-stack --template-body file://templates/single_new.yml --stack-name ${params.StackName} --parameters ParameterKey=KeyName,ParameterValue=${params.KeyName} ParameterKey=InstanceType,ParameterValue=${params.InstanceType}"            }
         }
         stage('Describe') {
             steps {

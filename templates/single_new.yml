@@ -77,7 +77,10 @@ Resources:
       SecurityGroupIds:
       - Ref: SecurityGroup
       SubnetId:
-        Ref: Subnet     
+        Ref: Subnet
+      Tags:
+      - Key: Name
+        Value: "KubernetesWorker"  
 Outputs:
   PublicName:
     Value:

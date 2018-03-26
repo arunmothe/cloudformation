@@ -46,7 +46,7 @@ Resources:
         Ref: VPC
       CidrBlock: 10.0.0.0/24
       AvailabilityZone: us-east-1a    
-  Kubernetes_Master:
+  KubernetesMaster:
     Type: AWS::EC2::Instance
     Properties:
       ImageId:
@@ -60,7 +60,7 @@ Resources:
       SubnetId:
         Ref: Subnet        
         
-  Kubernetes_Worker-node:
+  KubernetesWorker:
     Type: AWS::EC2::Instance
     Properties:
       ImageId:

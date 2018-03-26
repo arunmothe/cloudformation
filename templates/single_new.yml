@@ -58,7 +58,12 @@ Resources:
       SecurityGroupIds:
       - Ref: SecurityGroup
       SubnetId:
-        Ref: Subnet        
+        Ref: Subnet
+      Tags:
+      - Key: Name
+        Value: "KubernetesMaster"
+  
+        
         
   KubernetesWorker:
     Type: AWS::EC2::Instance

@@ -1,8 +1,10 @@
 pipeline {
     agent any 
     parameters {
-        string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
         // choices are newline separated
+        string(defaultValue: "single-instance", description: 'stack name?', name: 'StackName')
+        string(defaultValue: "ubuntu", description: 'key name?', name: 'KeyName')
+        string(defaultValue: "t2.micro", description: 'Instance name?', name: 'InstanceType')
         choice(choices: 'US-EAST-1\nUS-WEST-2', description: 'What AWS region?', name: 'region')
     }
 
@@ -14,12 +16,12 @@ pipeline {
         }
         stage('Build') { 
             steps { 
-                sh 'aws cloudformation create-stack --template-body file://templates/single_instance.yml --stack-name single-instance --parameters ParameterKey=KeyName,ParameterValue=tutorial ParameterKey=InstanceType,ParameterValue=t2.micro' 
+                sh 'aws cloudformation create-stack --template-body file://templates/single_instance.yml --stack-name ${params.StackName} --parameters ParameterKey=KeyName,ParameterValue=${params.KeyName} ParameterKey=InstanceType,ParameterValue=${params.InstanceType} 
             }
         }
         stage('Describe') {
             steps {
-               sh 'aws cloudformation describe-stack-events --stack-name single-instance' 
+               sh 'aws cloudformation describe-stack-events --stack-name ${params.StackName}' 
             }
        }
     }

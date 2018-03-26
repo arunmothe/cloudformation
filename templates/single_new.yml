@@ -56,13 +56,13 @@ Resources:
       KeyName:
         Ref: KeyName
       SecurityGroupIds:
-      - Ref: SecurityGroup
-      SubnetId:
-        Ref: Subnet    
+      - Ref: SecurityGroup  
       NetworkInterfaces:
       - AssociatePublicIpAddress: 'true'
         DeviceIndex: '0'
         DeleteOnTermination: 'true'
+        SubnetId:
+          Ref: Subnet
 
         
   KubernetesWorker:
@@ -76,12 +76,12 @@ Resources:
         Ref: KeyName
       SecurityGroupIds:
       - Ref: SecurityGroup
-      SubnetId:
-        Ref: Subnet 
       NetworkInterfaces:
       - AssociatePublicIpAddress: 'true'
         DeviceIndex: '0'
         DeleteOnTermination: 'true'
+        SubnetId:
+          Ref: Subnet 
   
 Outputs:
   PublicName:

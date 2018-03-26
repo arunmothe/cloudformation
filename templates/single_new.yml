@@ -78,6 +78,5 @@ Outputs:
     Value:
       Fn::GetAtt:
       - KubernetesMaster
-      - KubernetesWorker
       - PublicDnsName
     Description: Public name (connect via SSH)
